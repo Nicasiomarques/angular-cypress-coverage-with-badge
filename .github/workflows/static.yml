@@ -11,30 +11,11 @@ jobs:
         uses: bahmutov/npm-install@v1
 
       - name: Unit tests 🧪
-        run: npm test
+        run: npm run e2e:ci
 
-      - name: Check all covered files 📊
-        run: |
-          node bin/check-coverage main1.js
-          node bin/check-coverage to/main2.js
-          node bin/only-covered main1.js main2.js
-          # and can check multiple files at once
-          node bin/check-coverage main1.js main2.js
       - name: Check totals 🛡
         run: node bin/check-total --min 30
 
-      - name: Set commit status using REST
-        # https://developer.github.com/v3/repos/statuses/
-        run: |
-          curl --request POST \
-            --url https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }} \
-            --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
-            --header 'content-type: application/json' \
-            --data '{
-                "state": "success",
-                "description": "REST commit status",
-                "context": "a test"
-              }'
       - name: Set code coverage commit status 📫
         run: node bin/set-gh-status
         env:
