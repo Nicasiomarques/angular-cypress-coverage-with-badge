@@ -10,11 +10,8 @@ jobs:
       - name: Install NPM dependencies 📦
         uses: bahmutov/npm-install@v1
 
-      - name: Unit tests 🧪
+      - name: e2e tests 🧪
         run: npm run e2e:ci
-
-      - name: Check totals 🛡
-        run: node bin/check-total --min 30
 
       - name: Set code coverage commit status 📫
         run: node bin/set-gh-status
