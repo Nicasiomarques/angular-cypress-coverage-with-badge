@@ -18,14 +18,3 @@ jobs:
       - name: Update code coverage badge 🥇
         run: npx update-badge
       - uses: EndBug/add-and-commit@v9 # You can change this to use a specific version.
-        with:
-          add: 'README.md'
-          # Determines the way the action fills missing author name and email. Three options are available:
-          # - github_actor -> UserName <UserName@users.noreply.github.com>
-          # - user_info -> Your Display Name <your-actual@email.com>
-          # - github_actions -> github-actions <email associated with the github logo>
-          # Default: github_actor
-          default_author: github_actor
-          # Whether to push the commit and, if any, its tags to the repo. It can also be used to set the git push arguments (see the paragraph below for more info)
-          # Default: true
-          push: true
