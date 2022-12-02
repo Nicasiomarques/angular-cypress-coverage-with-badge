@@ -17,4 +17,5 @@ jobs:
         run: npx update-badge
         
       - name: add updated readme commit
-        run: git add README.md && git commit 'chore:update coverage percentage'
+        run: git add README.md && git commit 'chore:update coverage percentage' && git push
+      
