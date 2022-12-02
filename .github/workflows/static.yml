@@ -13,11 +13,6 @@ jobs:
       - name: e2e tests 🧪
         run: npm run e2e:ci
 
-      - name: Set code coverage commit status 📫
-        run: node bin/set-gh-status
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Check coverage change from README 📫
         run: node bin/set-gh-status --check-against-readme
         env:
