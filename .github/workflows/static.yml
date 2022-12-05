@@ -26,7 +26,7 @@ jobs:
         run: npm i
 
       - name: Run Tests
-        run: npm run e2e:coverage
+        run: npm run e2e:ci
 
       - name: Update Coverage on Readme
         id: coverageComment
