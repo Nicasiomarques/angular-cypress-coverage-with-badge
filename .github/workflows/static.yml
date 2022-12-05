@@ -49,4 +49,4 @@ jobs:
           label: Tests coverage
           message: ${{ steps.coverageComment.outputs.coverage }}%
           color: ${{ steps.coverageComment.outputs.color }}
-          namedLogo: jest
+          namedLogo: cypress
