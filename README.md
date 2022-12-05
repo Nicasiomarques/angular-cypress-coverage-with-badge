@@ -1,4 +1,4 @@
-# Angular Cypress Coverage Tutorial ![check-code-coverage](https://img.shields.io/badge/code--coverage-94.47%25-brightgreen)
+![Coverage Badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/Nicasiomarques/03cebc7a547683da5e77953a2d4ecd6b/raw/angular-cypress-coverage-with-badge__heads_main.json)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.1 and Node.js v16.13.0
 

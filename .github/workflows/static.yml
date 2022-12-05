@@ -1,19 +1,8 @@
 name: badges
 on:
   push:
-    # update README badge only if the README file changes
-    # or if the package.json file changes, or this file changes
     branches:
       - master
-    paths:
-      - README.md
-      - package.json
-      - .github/workflows/badges.yml
-  schedule:
-    # update badges every night
-    # because we have a few badges that are linked
-    # to the external repositories
-    - cron: '0 3 * * *'
 
 jobs:
   badges:
@@ -23,12 +12,38 @@ jobs:
       - name: Checkout 🛎
         uses: actions/checkout@v2
 
-      - name: Update version badges 🏷
-        run: npx -p dependency-version-badge update-badge cypress
+      # - name: Update version badges 🏷
+      #   run: npx -p dependency-version-badge update-badge cypress
 
-      - name: Commit any changed files 💾
-        uses: stefanzweifel/git-auto-commit-action@v4
+      # - name: Commit any changed files 💾
+      #   uses: stefanzweifel/git-auto-commit-action@v4
+      #   with:
+      #     commit_message: Updated badges
+      #     branch: main
+      #     file_pattern: README.md
+
+      - name: Run Tests
+        run: npm run e2e:coverage
+
+      - name: Update Coverage on Readme
+        id: coverageComment
+        uses: MishaKav/jest-coverage-comment@main
         with:
-          commit_message: Updated badges
-          branch: main
-          file_pattern: README.md
+          hide-comment: true
+          coverage-summary-path: ./coverage/coverage-summary.json
+
+      - name: Check the output coverage
+        run: |
+          echo "Coverage Percantage - ${{ steps.coverageComment.outputs.coverage }}"
+          echo "Coverage Color - ${{ steps.coverageComment.outputs.color }}"
+
+      - name: Create the Badge
+        uses: schneegans/dynamic-badges-action@v1.0.0
+        with:
+          auth: ${{ secrets.COVERAGE_GIST }}
+          gistID: 03cebc7a547683da5e77953a2d4ecd6b
+          filename: angular-cypress-coverage-with-badge__heads_main.json
+          label: Tests coverage
+          message: ${{ steps.coverageComment.outputs.coverage }}%
+          color: ${{ steps.coverageComment.outputs.color }}
+          namedLogo: jest
